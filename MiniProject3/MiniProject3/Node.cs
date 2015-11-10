@@ -8,5 +8,9 @@ namespace MiniProject3
 {
     public class Node
     {
+
+
+        Dictionary<string, string> contacts;
+        string constactOfContact;
     }
 }
