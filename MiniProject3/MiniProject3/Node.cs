@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniProject3
 {
-    public class Program
+    class Node
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello");
-        }
     }
 }
