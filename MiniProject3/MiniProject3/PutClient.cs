@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniProject3
 {
-    public class Node
+    public class PutClient
     {
     }
 }
