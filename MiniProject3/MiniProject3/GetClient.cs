@@ -8,5 +8,9 @@ namespace MiniProject3
 {
     public class GetClient
     {
+        public GetClient()
+        {
+            Console.WriteLine("Testing branch");
+        }
     }
 }
