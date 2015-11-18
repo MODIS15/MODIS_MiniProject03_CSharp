@@ -1,5 +1,5 @@
 ﻿
-namespace MiniProject3.Message
+namespace MiniProject3.MessageTypes
 
 {
     public enum MessageType
