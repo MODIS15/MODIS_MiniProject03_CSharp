@@ -9,8 +9,40 @@ namespace MiniProject3
     public class Node
     {
 
+        public List<Connection> Connections { get; private set; }
+        public Dictionary<int, string> StoredFiles { get; private set; }
 
-        Dictionary<string, string> contacts;
-        string constactOfContact;
+        public void AddConnection(Connection connection)
+        {
+            Connections.Add(connection);
+        }
+
+        public void RemoveConnection(Connection connection)
+        {
+            Connections.Remove(connection);
+        }
+
+        public void AddItem(int GUID, string item)
+        {
+            StoredFiles.Add(GUID, item);
+        }
+
+        public void RemoveItem(int GUID, string item)
+        {
+            StoredFiles.Remove(GUID);
+        }
+
+        public class Connection
+        {
+            public string IpAddress { get; protected set; }
+            public int Port { get; protected set; }
+
+            public Connection(string IpAddress, int Port)
+            {
+                this.IpAddress = IpAddress;
+                this.Port = Port;
+            }
+
+        }
     }
 }
