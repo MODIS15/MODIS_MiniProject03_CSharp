@@ -8,9 +8,15 @@ namespace MiniProject3
 {
     public class Node
     {
-
+        public int localPort { get; protected set; }
         public List<Connection> Connections { get; private set; }
         public Dictionary<int, string> StoredFiles { get; private set; }
+
+        
+        public Node(int localPort)
+        {
+            this.localPort = localPort;
+        }
 
         public void AddConnection(Connection connection)
         {
