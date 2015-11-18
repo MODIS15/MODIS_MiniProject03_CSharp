@@ -37,12 +37,6 @@ namespace MiniProject3
 
                 var message = formatter.Deserialize(stream);
                 client.Close();
-                
-                
-                
-                
-
-
             }
 
 

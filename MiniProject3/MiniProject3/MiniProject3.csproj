@@ -53,6 +53,7 @@
     <Compile Include="MessageTypes\Message.cs" />
     <Compile Include="MessageTypes\MessageType.cs" />
     <Compile Include="MessageTypes\PutMessage.cs" />
+    <Compile Include="MessageTypes\ShareContactMessage.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
