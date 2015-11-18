@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiniProject3.Message;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,60 @@ namespace MiniProject3
         {
             node = new Node(localPort);
             node.AddConnection(connection);
-            listener.controller(this);
+            listener.controller = this;
         }
 
         public Controller(int localport)
         {
             node = new Node(localport);
-            listener.controller(this);
+            listener.controller = this;
         }
 
 
 
         public void startListener()
         {
-            ListenerThread.Start(new ThreadStart(Listener.start()));
+            ListenerThread.Start(new ThreadStart(listener.setUpListener));
         }
+
+        public void joinMessageHandler(JoinMessage message)
+        {
+            var incomingConnection = new Node.Connection(message.Ip, message.Port);
+            //Only store unknown connections
+            if (!node.Connections.Contains(incomingConnection))
+            {
+                node.AddConnection(incomingConnection);
+            }
+        }
+
+
+
+        private void HandlePutMessage(PutMessage message)
+        {
+            node.AddItem(message.Key, message.Message);
+        }
+
+        public void messagehandler(Object message)
+        {
+            if(message.GetType()==typeof(PutMessage))
+            {
+                HandlePutMessage((PutMessage) message);
+            }
+            else if(message.GetType() == typeof(JoinMessage))
+            {
+                joinMessageHandler((JoinMessage)message);
+            }
+            else
+            {
+                Console.WriteLine($"Could not recognize object of type {message.GetType()}");
+            }
+        }
+
+
+
     }
+
+
+    
+
 }
