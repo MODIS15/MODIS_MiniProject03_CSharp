@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using MiniProject3.MessageTypes;
 
 namespace MiniProject3
 {
 
     /// <summary>
-    /// This program is a Put Client used to send resources (message, key) to the Node class. 
+    /// This PutClient is used to send resources (message, key) to a Node.
+    /// The Put client takes as arguments the IP/port of a Node, an integer key and a string value (user input from terminal). 
+    /// The client then submits a PUT(key, value) message to the indicated node and terminates.
     /// </summary>
     public class PutClient
     {
