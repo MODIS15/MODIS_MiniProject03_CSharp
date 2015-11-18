@@ -9,18 +9,28 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using MiniProject3.Message;
+using MiniProject3.MessageTypes;
 
 namespace MiniProject3
 {
+
+    /// <summary>
+    /// This program is a Put Client used to send resources (message, key) to the Node class. 
+    /// </summary>
     public class PutClient
     {
-        private TcpListener putListener;
-
-        public PutClient(IPAddress address, int port)
+        // Could optionally pass parameters directly as ip, port, message and key
+        public PutClient() 
         {
-
+            while (true) SendResourceMessage();
         }
+
+        /*
+        public static void Main(String[] args)
+        {
+            PutClient putClient = new PutClient();
+        }
+        */
 
         /// <summary>
         /// Insert resource into P2P 
@@ -46,15 +56,15 @@ namespace MiniProject3
                 var putMessage = new PutMessage(resourceKey, resourceInput);
                 Console.WriteLine(); // New line 
 
-                // Serialize message
-                IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream("PutMessage.bin", FileMode.Create, FileAccess.Write, FileShare.None);
-                formatter.Serialize(stream, putMessage);
-                stream.Close();
+                // Start TCPClient
+                using (var tcpClient = new TcpClient(ipEndPoint))
+                {
+                    tcpClient.Connect(ipEndPoint);
+                    SerializeMessage(tcpClient, putMessage);  
+                }
 
-                putListener = new TcpListener(ipEndPoint); // Should maybe start intitially 
-                putListener.Start();
-                Console.WriteLine("Started listening on put...");
+                Console.WriteLine("Message has been put.\n" +
+                    "Resetting...\n");
             }
             catch (HostProtectionException e)
             {
@@ -66,7 +76,23 @@ namespace MiniProject3
             }
         }
 
-
+        /// <summary>
+        /// Serializes a given message used to send in the network stream upon requests. 
+        /// </summary>
+        /// <param name="client">
+        /// The TCP client used to transfer Put Messages with. 
+        /// </param>
+        /// <param name="message">
+        /// PutMessage holding a key and a message. 
+        /// </param>
+        private void SerializeMessage(TcpClient client, PutMessage message)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            NetworkStream stream = client.GetStream();
+            formatter.Serialize(stream, message);
+            stream.Flush(); 
+            stream.Close();
+        }
 
     }
 

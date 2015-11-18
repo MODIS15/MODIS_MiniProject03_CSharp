@@ -4,19 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniProject3.Message
+namespace MiniProject3.MessageTypes
 {
     [Serializable]
-    public class JoinMessage : Message
+    public class GetMessage : Message
     {
+        public int Key { get; set; }
+
         public string Ip { get; set; }
 
         public int Port { get; set; }
 
-        protected JoinMessage() { }
+        protected GetMessage() { }
 
-        public JoinMessage(string ip, int port) : base(MessageType.Join)
+        public GetMessage(int key, string ip, int port) : base(MessageType.Get)
         {
+            Key = key;
             Ip = ip;
             Port = port;
         }
