@@ -1,4 +1,4 @@
-﻿using MiniProject3.Message;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +34,12 @@ namespace MiniProject3
                 client = listener.AcceptTcpClient();
                 NetworkStream stream = client.GetStream();
                 IFormatter formatter = new BinaryFormatter();
-
                 var message = formatter.Deserialize(stream);
+                
+                stream.Close();
                 client.Close();
+
+                controller.messagehandler(message);
             }
 
 

@@ -7,7 +7,8 @@ namespace MiniProject3.MessageTypes
         Join,
         Put,
         Get,
-        Resource
+        Resource,
+        ShareContact
         //Capacity, Disconnect, Connect, Echo 
     }
 

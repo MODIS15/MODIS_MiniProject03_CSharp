@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PutClient.cs" />
     <Compile Include="Listener.cs" />
+    <Compile Include="Sender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

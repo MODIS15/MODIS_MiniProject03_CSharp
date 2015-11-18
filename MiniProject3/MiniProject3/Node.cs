@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,12 +39,24 @@ namespace MiniProject3
             StoredFiles.Remove(GUID);
         }
 
+        public Node.Connection getFriendOfFriends(Connection reqeuster, Connection friend)
+        {
+            foreach(Connection connection in Connections)
+            {
+                if(!connection.Equals(reqeuster) && !connection.Equals(friend))
+                {
+                    return connection;
+                }
+            }
+            return null;
+        }
+
         public class Connection
         {
-            public string IpAddress { get; protected set; }
+            public IPAddress IpAddress { get; protected set; }
             public int Port { get; protected set; }
 
-            public Connection(string IpAddress, int Port)
+            public Connection(IPAddress IpAddress, int Port)
             {
                 this.IpAddress = IpAddress;
                 this.Port = Port;

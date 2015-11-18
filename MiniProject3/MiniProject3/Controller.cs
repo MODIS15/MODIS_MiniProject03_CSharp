@@ -1,7 +1,9 @@
-﻿using MiniProject3.Message;
+﻿
+using MiniProject3.MessageTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,11 +41,14 @@ namespace MiniProject3
 
         public void joinMessageHandler(JoinMessage message)
         {
-            var incomingConnection = new Node.Connection(message.Ip, message.Port);
+            var incomingConnection = new Node.Connection(IPAddress.Parse(message.Ip), message.Port);
             //Only store unknown connections
             if (!node.Connections.Contains(incomingConnection))
             {
                 node.AddConnection(incomingConnection);
+                Node.Connection friendRequester = new Node.Connection(IPAddress.Parse(message.Ip), message.Port);
+                
+                var friendsOfFriends = node.getFriendOfFriends();
             }
         }
 

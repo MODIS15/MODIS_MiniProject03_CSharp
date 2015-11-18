@@ -9,16 +9,13 @@ namespace MiniProject3.MessageTypes
     [Serializable]
     public class ShareContactMessage : Message
     {
-        public string Ip { get; set; }
-
-        public int Port { get; set; }
+        Node.Connection Contact { get; set; }
 
         protected ShareContactMessage() { }
 
-        public ShareContactMessage(string ip, int port) : base(MessageType.Join)
+        public ShareContactMessage(Node.Connection Contact) : base(MessageType.ShareContact)
         {
-            Ip = ip;
-            Port = port;
+            this.Contact = Contact;
         }
     }
 }
