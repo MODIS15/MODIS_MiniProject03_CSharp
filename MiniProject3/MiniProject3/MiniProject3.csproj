@@ -48,6 +48,8 @@
     <Compile Include="Interfaces\IGetClient.cs" />
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="Interfaces\IPutClient.cs" />
+    <Compile Include="Message\GetMessage.cs" />
+    <Compile Include="Message\JoinMessage.cs" />
     <Compile Include="Message\Message.cs" />
     <Compile Include="Message\MessageType.cs" />
     <Compile Include="Message\PutMessage.cs" />

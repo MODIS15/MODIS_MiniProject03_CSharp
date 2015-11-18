@@ -4,13 +4,11 @@ namespace MiniProject3.Message
 {
     public enum MessageType
     {
-        Join, // Connect
+        Join,
         Put,
         Get,
         Resource
-        //Capacity,
-        //Disconnect,
-        //Echo,
+        //Capacity, Disconnect, Connect, Echo 
     }
 
 }
